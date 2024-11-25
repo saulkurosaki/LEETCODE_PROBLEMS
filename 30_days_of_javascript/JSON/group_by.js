@@ -79,9 +79,13 @@
 Array.prototype.groupBy = function (fn) {
   let newObj = {};
 
-  this.forEach((el) => {
-    newObj[fn(el)] = this.filter((item) => fn(item) === fn(el));
-  });
+  for (const el of this) {
+    const key = fn(el);
+
+    if (!newObj[key]) newObj[key] = [];
+
+    newObj[key].push(el);
+  }
 
   return newObj;
 };
