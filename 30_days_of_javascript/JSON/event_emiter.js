@@ -68,3 +68,42 @@
 // The emit action takes between either 1 or 2 arguments. The first argument is the name of the event we want to emit, and the 2nd argument is passed to the callback functions.
 // The subscribe action takes 2 arguments, where the first one is the event name and the second is the callback function.
 // The unsubscribe action takes one argument, which is the 0-indexed order of the subscription made before.
+
+class EventEmitter {
+  constructor() {
+    this.events = new Map(); //Mapa para almacenar eventos y sus callbacks
+  }
+
+  subscribe(eventName, callback) {
+    if (!this.events.has(eventName)) {
+      this.events.set(eventName, []); // Si no existe el evento, lo inicializamos con un arreglo vacio
+    }
+    const callbacks = this.events.get(eventName); // Obtenemos los callbacks del evento
+    callbacks.push(callback); // Agregamos el nuevo callback
+
+    // Retornamos el objeto con la funcionalidad de unsubscribe
+    return {
+      unsubscribe() {
+        const index = callbacks.indexOf(callback);
+        if (index !== -1) {
+          callbacks.splice(index, 1); // Eliminamos el callback del arreglo
+        }
+      },
+    };
+  }
+
+  emit(eventName, args = []) {
+    if (!this.events.has(eventName)) {
+      return []; // Si no hay callbacks registrados para el evento, retornamos un arreglo vacio
+    }
+    const callbacks = this.events.get(eventName);
+    return callbacks.map((callback) => callback(...args)); // Ejecutamos los callbacks con los argumentos
+  }
+}
+
+// Complejidad:
+
+// 	•	Espacio: O(n), donde n es el número total de eventos y callbacks almacenados.
+// 	•	Tiempo para subscribe: O(1), ya que añadir un callback al arreglo toma tiempo constante.
+// 	•	Tiempo para emit: O(m), donde m es el número de callbacks asociados al evento emitido.
+// 	•	Tiempo para unsubscribe: O(k), donde k es el número de callbacks asociados al evento (debido a la búsqueda lineal en el arreglo).
