@@ -43,10 +43,6 @@
 // functions is an array of functions that returns promises
 // 1 <= functions.length <= 10
 
-/**
- * @param {Array<Function>} functions
- * @return {Promise<any>}
- */
 var promiseAll = function (functions) {
   return new Promise((resolve, reject) => {
     const results = new Array(functions.length);
