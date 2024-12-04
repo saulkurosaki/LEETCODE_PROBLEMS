@@ -42,19 +42,16 @@
  */
 var chunk = function (arr, size) {
   if (arr.length > 0) {
-    let newArr = [];
+    const newArr = [];
     let newSubArr = [];
-    let counter = 0;
 
-    for (el of arr) {
-      if (counter < size) {
+    for (const el of arr) {
+      if (newSubArr.length < size) {
         newSubArr.push(el);
-        counter++;
       } else {
         newArr.push(newSubArr);
         newSubArr = [];
         newSubArr.push(el);
-        counter = 1;
       }
     }
 
