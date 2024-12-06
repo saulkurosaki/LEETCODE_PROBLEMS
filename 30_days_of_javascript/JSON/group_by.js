@@ -72,10 +72,6 @@
 // 0 <= array.length <= 105
 // fn returns a string
 
-/**
- * @param {Function} fn
- * @return {Object}
- */
 Array.prototype.groupBy = function (fn) {
   let newObj = {};
 
