@@ -86,6 +86,7 @@ var join = function (arr1, arr2) {
   });
 
   const newArr = Array.from(map.values());
+  const sortedArr = newArr.sort((a, b) => a.id - b.id);
 
-  return newArr.sort((a, b) => a.id - b.id);
+  return sortedArr;
 };
