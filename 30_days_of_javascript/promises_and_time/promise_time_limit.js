@@ -72,11 +72,6 @@
 // 0 <= t <= 1000
 // fn returns a promise
 
-/**
- * @param {Function} fn
- * @param {number} t
- * @return {Function}
- */
 var timeLimit = function (fn, t) {
   return async function (...args) {
     return await Promise.race([
