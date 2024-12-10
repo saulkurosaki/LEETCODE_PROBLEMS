@@ -26,10 +26,6 @@
 // 0 <= calls.length <= 1000
 // calls[i] === "call"
 
-/**
- * @param {number} n
- * @return {Function} counter
- */
 var createCounter = function (n) {
   let counter = n - 1;
   return function () {
