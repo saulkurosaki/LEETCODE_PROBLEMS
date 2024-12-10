@@ -48,12 +48,6 @@
 // 20 <= t <= 1000
 // 10 <= cancelTimeMs <= 1000
 
-/**
- * @param {Function} fn
- * @param {Array} args
- * @param {number} t
- * @return {Function}
- */
 var cancellable = function (fn, args, t) {
   const timeoutId = setTimeout(() => fn(...args), t);
   return () => {
