@@ -35,30 +35,23 @@
 // 2 <= JSON.stringify(arr).length <= 105
 // 1 <= size <= arr.length + 1
 
-/**
- * @param {Array} arr
- * @param {number} size
- * @return {Array}
- */
 var chunk = function (arr, size) {
-  if (arr.length > 0) {
-    const newArr = [];
-    let newSubArr = [];
+  if (arr.length === 0) return arr;
 
-    for (const el of arr) {
-      if (newSubArr.length < size) {
-        newSubArr.push(el);
-      } else {
-        newArr.push(newSubArr);
-        newSubArr = [];
-        newSubArr.push(el);
-      }
+  const newArr = [];
+  let newSubArr = [];
+
+  for (const el of arr) {
+    if (newSubArr.length < size) {
+      newSubArr.push(el);
+    } else {
+      newArr.push(newSubArr);
+      newSubArr = [];
+      newSubArr.push(el);
     }
-
-    newArr.push(newSubArr);
-
-    return newArr;
-  } else {
-    return arr;
   }
+
+  newArr.push(newSubArr);
+
+  return newArr;
 };
