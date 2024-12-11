@@ -47,11 +47,6 @@
 // -1000 <= each number <= 1000
 // 0 <= n <= 1000
 
-/**
- * @param {Array} arr
- * @param {number} depth
- * @return {Array}
- */
 var flat = function (arr, n) {
   const flattenHelper = (array, currentDepth) => {
     if (currentDepth >= n) return array;
@@ -59,7 +54,7 @@ var flat = function (arr, n) {
     const result = [];
     for (el of array) {
       if (Array.isArray(el)) {
-        result.push(...flattenHelper(el, currentDepth + 1));
+        result.push(...flattenHelper(el, currentDepth++));
       } else {
         result.push(el);
       }
