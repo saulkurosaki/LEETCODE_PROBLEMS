@@ -61,10 +61,6 @@
 // actions[i] is one of "call" and "getCallCount"
 // fnName is one of "sum", "factorial" and "fib"
 
-/**
- * @param {Function} fn
- * @return {Function}
- */
 function memoize(fn) {
   const cache = new Map();
   return function (...args) {
