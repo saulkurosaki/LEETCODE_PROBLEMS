@@ -35,3 +35,29 @@
 // -109 <= nums1[i], nums2[j] <= 109
 
 // Follow up: Can you come up with an algorithm that runs in O(m + n) time?
+
+function merge(nums1, m, nums2, n) {
+  // Inicializar punteros
+  let i = m - 1; // Último elemento válido de nums1
+  let j = n - 1; // Último elemento de nums2
+  let k = m + n - 1; // Última posición del array nums1
+
+  // Fusionar desde el final hacia el principio
+  while (i >= 0 && j >= 0) {
+    if (nums1[i] > nums2[j]) {
+      nums1[k] = nums1[i];
+      i--;
+    } else {
+      nums1[k] = nums2[j];
+      j--;
+    }
+    k--;
+  }
+
+  // Si quedan elementos en nums2, copiarlos a nums1
+  while (j >= 0) {
+    nums1[k] = nums2[j];
+    j--;
+    k--;
+  }
+}
