@@ -43,3 +43,23 @@
 // 0 <= nums.length <= 100
 // 0 <= nums[i] <= 50
 // 0 <= val <= 100
+
+function removeElement(nums, val) {
+  let k = 0; // Índice para los valores que no sean val
+
+  // Iteramos sobre el array para tan solo mover los elementos diferentes a val al frente del array
+  // y tener un indice máximo de valores validos
+  nums.forEach((el) => {
+    if (el !== val) {
+      nums[k] = el;
+      k++;
+    }
+  });
+
+  return k;
+}
+
+// Complejidad
+
+// 	•	Tiempo:  O(n) , ya que recorremos el array una sola vez.
+// 	•	Espacio:  O(1) , porque no utilizamos espacio adicional.
