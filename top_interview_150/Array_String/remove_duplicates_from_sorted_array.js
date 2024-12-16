@@ -39,3 +39,18 @@
 // 1 <= nums.length <= 3 * 104
 // -100 <= nums[i] <= 100
 // nums is sorted in non-decreasing order.
+
+function removeDuplicates(nums) {
+  if (nums.length === 0) return 0; // Caso especial: array vacío
+
+  let k = 0; // Puntero para rastrear la posición de elementos únicos
+
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] !== nums[k]) {
+      k++; // Mover al siguiente índice único
+      nums[k] = nums[i]; // Actualizar con el nuevo elemento único
+    }
+  }
+
+  return k + 1; // La cantidad de elementos únicos es k + 1
+}
