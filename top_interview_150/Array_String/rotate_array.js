@@ -28,3 +28,34 @@
 
 // Try to come up with as many solutions as you can. There are at least three different ways to solve this problem.
 // Could you do it in-place with O(1) extra space?
+
+function rotate(nums, k) {
+  const n = nums.length;
+  k %= n; // Asegurar que k no sea mayor que el tamaño de nums
+
+  // Función para invertir una sección del array
+  function reverse(start, end) {
+    while (start < end) {
+      [nums[start], nums[end]] = [nums[end], nums[start]];
+      start++;
+      end--;
+    }
+  }
+
+  // Paso 1: Invertir todo el array
+  reverse(0, n - 1);
+  // Paso 2: Invertir los primeros k elementos
+  reverse(0, k - 1);
+  // Paso 3: Invertir los últimos n-k elementos
+  reverse(k, n - 1);
+}
+
+// Rotación in-place usando tres reversas (Espacio O(1), tiempo O(n))
+
+// Este es el método más eficiente y no utiliza espacio adicional. Dividimos el problema en tres pasos de inversión de subarrays.
+
+// Pasos:
+
+// 	1.	Revertir todo el array.
+// 	2.	Revertir los primeros k elementos.
+// 	3.	Revertir los n - k elementos restantes.
