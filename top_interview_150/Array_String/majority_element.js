@@ -21,10 +21,8 @@
 
 // Follow-up: Could you solve the problem in linear time and in O(1) space?
 
-/**
- * @param {number[]} nums
- * @return {number}
- */
+//* Algoritmo de Boyer-Moore (Enfoque óptimo con  O(n)  tiempo y  O(1)  espacio)
+
 var majorityElement = function (nums) {
   let candidate = null;
   let count = 0;
@@ -38,8 +36,6 @@ var majorityElement = function (nums) {
 
   return candidate;
 };
-
-//   Algoritmo de Boyer-Moore (Enfoque óptimo con  O(n)  tiempo y  O(1)  espacio)
 
 //   •	Usamos una variable candidate para rastrear el posible elemento mayoritario.
 // 	•	Si el contador llega a 0, actualizamos el candidato al elemento actual.
