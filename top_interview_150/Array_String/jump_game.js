@@ -19,3 +19,25 @@
 
 // 1 <= nums.length <= 104
 // 0 <= nums[i] <= 105
+
+function canJump(nums) {
+  let maxReach = 0; // Índice más lejano que podemos alcanzar
+
+  for (let i = 0; i < nums.length; i++) {
+    // Si no podemos avanzar desde este índice, devolvemos false
+    if (i > maxReach) return false;
+
+    // Actualizamos el alcance máximo
+    maxReach = Math.max(maxReach, i + nums[i]);
+
+    // Si ya podemos alcanzar o superar el último índice
+    if (maxReach >= nums.length - 1) return true;
+  }
+
+  return false; // Si salimos del bucle sin alcanzar el último índice
+}
+
+// Complejidad
+
+// 	1.	Tiempo: O(n), ya que recorremos el array una sola vez.
+// 	2.	Espacio: O(1), solo usamos una variable adicional para rastrear el alcance máximo.
