@@ -29,3 +29,21 @@
 
 // 1 <= prices.length <= 3 * 104
 // 0 <= prices[i] <= 104
+
+function maxProfit(prices) {
+  let maxProfit = 0;
+
+  for (let i = 1; i < prices.length; i++) {
+    // Si el precio actual es mayor al anterior, hay ganancia
+    if (prices[i] > prices[i - 1]) {
+      maxProfit += prices[i] - prices[i - 1];
+    }
+  }
+
+  return maxProfit;
+}
+
+// Análisis
+
+// 	1.	Complejidad temporal: O(n), ya que recorremos el array una sola vez.
+// 	2.	Complejidad espacial: O(1), solo usamos una variable adicional.
