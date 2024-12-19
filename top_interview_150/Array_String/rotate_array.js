@@ -29,6 +29,8 @@
 // Try to come up with as many solutions as you can. There are at least three different ways to solve this problem.
 // Could you do it in-place with O(1) extra space?
 
+//* ALGORITMO: Rotación in-place usando tres reversas (Espacio O(1), tiempo O(n))
+
 function rotate(nums, k) {
   const n = nums.length;
   k %= n; // Asegurar que k no sea mayor que el tamaño de nums
@@ -49,8 +51,6 @@ function rotate(nums, k) {
   // Paso 3: Invertir los últimos n-k elementos
   reverse(k, n - 1);
 }
-
-// Rotación in-place usando tres reversas (Espacio O(1), tiempo O(n))
 
 // Este es el método más eficiente y no utiliza espacio adicional. Dividimos el problema en tres pasos de inversión de subarrays.
 
