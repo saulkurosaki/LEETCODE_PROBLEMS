@@ -20,3 +20,31 @@
 // n == citations.length
 // 1 <= n <= 5000
 // 0 <= citations[i] <= 1000
+
+function hIndex(citations) {
+  // Ordenar las citas en orden descendente
+  citations.sort((a, b) => b - a);
+
+  let h = 0;
+
+  // Iterar sobre las citas
+  for (let i = 0; i < citations.length; i++) {
+    if (citations[i] >= i + 1) {
+      h = i + 1; // Actualizar el valor de h-index
+    } else {
+      break; // Si no cumple la condición, detener el proceso
+    }
+  }
+
+  return h;
+}
+
+// Complejidad
+
+// 	1.	Tiempo:
+// 	•	Ordenar el array:  O(n \log n) .
+// 	•	Iterar sobre el array:  O(n) .
+// 	•	Complejidad total:  O(n \log n) .
+
+// 	2.	Espacio:
+// 	•	 O(1) , ya que no usamos estructuras adicionales significativas.
