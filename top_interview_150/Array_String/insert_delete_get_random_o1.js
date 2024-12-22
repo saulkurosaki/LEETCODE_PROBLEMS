@@ -31,3 +31,69 @@
 // -231 <= val <= 231 - 1
 // At most 2 * 105 calls will be made to insert, remove, and getRandom.
 // There will be at least one element in the data structure when getRandom is called.
+
+class RandomizedSet {
+  constructor() {
+    this.data = []; // Lista para almacenar los elementos
+    this.indexMap = new Map(); // Mapa para almacenar el índice de cada elemento
+  }
+}
+
+RandomizedSet.prototype.insert = function (val) {
+  if (this.indexMap.has(val)) return false; // Si ya existe, no lo inserta
+
+  this.data.push(val); // Añadir al final de la lista
+  this.indexMap.set(val, this.data.length - 1); // Registrar su índice en el mapa
+
+  return true;
+};
+
+RandomizedSet.prototype.remove = function (val) {
+  if (!this.indexMap.has(val)) return false; // Si no existe, no puede eliminarlo
+
+  const index = this.indexMap.get(val); // Obtener el índice del elemento a eliminar
+  const lastElement = this.data[this.data.length - 1]; // Obtener el último elemento de la lista
+
+  // Intercambiar el elemento a eliminar con el último elemento
+  this.data[index] = lastElement;
+  this.indexMap.set(lastElement, index);
+
+  // Eliminar el último elemento de la lista
+  this.data.pop();
+  this.indexMap.delete(val); // Eliminar del mapa
+
+  return true;
+};
+
+RandomizedSet.prototype.getRandom = function () {
+  const randomIndex = Math.floor(Math.random() * this.data.length);
+  return this.data[randomIndex]; // Devolver un elemento aleatorio
+};
+
+// Explicación del Código
+
+// 	1.	insert(val)
+// 	•	Verifica si el valor ya está presente utilizando el mapa.
+// 	•	Si no está presente, lo agrega al final de la lista y actualiza el mapa con su índice.
+// 	2.	remove(val)
+// 	•	Verifica si el valor está presente utilizando el mapa.
+// 	•	Si está presente:
+// 	•	Intercambia el valor con el último elemento de la lista.
+// 	•	Actualiza el índice del último elemento en el mapa.
+// 	•	Elimina el último elemento de la lista y el valor del mapa.
+// 	3.	getRandom()
+// 	•	Genera un índice aleatorio dentro del rango de la lista y devuelve el elemento en ese índice.
+
+// Complejidad
+
+// 	1.	insert
+// 	•	Acceso y actualización del mapa:  O(1) .
+// 	•	Inserción en la lista:  O(1) .
+// 	•	Complejidad total:  O(1) .
+// 	2.	remove
+// 	•	Acceso y actualización del mapa:  O(1) .
+// 	•	Intercambio y eliminación de elementos de la lista:  O(1) .
+// 	•	Complejidad total:  O(1) .
+// 	3.	getRandom
+// 	•	Generar un índice aleatorio y acceder al elemento:  O(1) .
+// 	•	Complejidad total:  O(1) .
