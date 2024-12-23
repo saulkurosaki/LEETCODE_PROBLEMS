@@ -25,3 +25,41 @@
 // n == ratings.length
 // 1 <= n <= 2 * 104
 // 0 <= ratings[i] <= 2 * 104
+
+function candy(ratings) {
+  const n = ratings.length;
+  const candies = new Array(n).fill(1);
+
+  // Primera pasada: de izquierda a derecha
+  for (let i = 1; i < n; i++) {
+    if (ratings[i] > ratings[i - 1]) {
+      candies[i] = candies[i - 1] + 1;
+    }
+  }
+
+  // Segunda pasada: de derecha a izquierda
+  for (let i = n - 2; i >= 0; i--) {
+    if (ratings[i] > ratings[i + 1]) {
+      candies[i] = Math.max(candies[i], candies[i + 1] + 1);
+    }
+  }
+
+  // Sumar los caramelos
+  return candies.reduce((sum, c) => sum + c, 0);
+}
+
+//* Algoritmo
+
+// 	1.	Inicialización:
+// 	•	Asigna un caramelo a cada niño, ya que todos deben recibir al menos uno.
+// 	2.	Primera pasada (izquierda a derecha):
+// 	•	Si la calificación de un niño es mayor que la de su vecino izquierdo, aumenta la cantidad de caramelos para ese niño.
+// 	3.	Segunda pasada (derecha a izquierda):
+// 	•	Si la calificación de un niño es mayor que la de su vecino derecho, ajusta los caramelos para asegurarte de que tenga más que su vecino, respetando los caramelos asignados en la primera pasada.
+// 	4.	Sumar los caramelos:
+// 	•	La suma total de los caramelos asignados después de ambas pasadas será la respuesta.
+
+//* Complejidad
+
+// 	•	Tiempo:  O(n) , ya que recorremos el array dos veces.
+// 	•	Espacio:  O(n) , para el array candies.
