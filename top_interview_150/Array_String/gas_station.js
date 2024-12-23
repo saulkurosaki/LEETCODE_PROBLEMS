@@ -35,3 +35,34 @@
 // n == gas.length == cost.length
 // 1 <= n <= 105
 // 0 <= gas[i], cost[i] <= 104
+
+function canCompleteCircuit(gas, cost) {
+  const n = gas.length;
+
+  // Verifica si es posible completar el circuito
+  if (
+    gas.reduce((sum, g) => sum + g, 0) < cost.reduce((sum, c) => sum + c, 0)
+  ) {
+    return -1;
+  }
+
+  let start = 0; // Índice de inicio
+  let tank = 0; // Balance actual de gas
+
+  for (let i = 0; i < n; i++) {
+    tank += gas[i] - cost[i];
+
+    if (tank < 0) {
+      // No podemos llegar al siguiente punto desde el índice actual
+      start = i + 1; // Mover el punto de inicio
+      tank = 0; // Reinicia el balance de gas
+    }
+  }
+
+  return start;
+}
+
+// Complejidad
+
+// 	•	Tiempo:  O(n) , ya que recorremos el array una sola vez.
+// 	•	Espacio:  O(1) , no usamos estructuras adicionales.
