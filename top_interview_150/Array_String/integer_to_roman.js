@@ -56,3 +56,42 @@
 // Constraints:
 
 // 1 <= num <= 3999
+
+const intToRoman = (num) => {
+  const romanMap = {
+    1: "I",
+    4: "IV",
+    5: "V",
+    9: "IX",
+    10: "X",
+    40: "XL",
+    50: "L",
+    90: "XC",
+    100: "C",
+    400: "CD",
+    500: "D",
+    900: "CM",
+    1000: "M",
+  };
+
+  let result = "";
+
+  for (key of Object.keys(romanMap).sort((a, b) => b - a)) {
+    while (num >= parseInt(key)) {
+      result += romanMap[key];
+      num -= parseInt(key);
+    }
+  }
+
+  return result;
+};
+
+//*   Explicación:
+
+// Declaración del diccionario romanMap: Se crea un diccionario que mapea los valores numéricos a sus correspondientes símbolos romanos.
+// Iteración sobre los valores: Se itera sobre las claves del diccionario en orden descendente (de mayor a menor valor).
+// Conversión: En cada iteración:
+// Se verifica si el número num es mayor o igual al valor actual.
+// Si es mayor o igual, se agrega el símbolo romano correspondiente al resultado y se resta el valor del número.
+// Se repite este proceso hasta que el número num sea menor que el valor actual.
+// Retorno del resultado: Se devuelve la cadena resultante con la representación romana del número.
