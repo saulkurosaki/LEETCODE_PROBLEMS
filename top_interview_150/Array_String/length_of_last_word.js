@@ -27,3 +27,32 @@
 // 1 <= s.length <= 104
 // s consists of only English letters and spaces ' '.
 // There will be at least one word in s.
+
+function lengthOfLastWord(s) {
+  // Eliminar espacios iniciales y finales
+  s = s.trim();
+
+  // Encontrar el índice del último espacio
+  const lastSpaceIndex = s.lastIndexOf(" ");
+
+  // Si no hay espacios, la longitud es la longitud de toda la cadena
+  if (lastSpaceIndex === -1) {
+    return s.length;
+  }
+
+  // Calcular la longitud de la última palabra
+  return s.length - lastSpaceIndex - 1;
+}
+
+//*   Explicación:
+
+// Eliminar espacios iniciales y finales:
+
+// Utilizamos el método trim() para eliminar los espacios en blanco al principio y al final de la cadena.
+// Encontrar el índice del último espacio:
+
+// Utilizamos el método lastIndexOf(' ') para encontrar el índice del último espacio en la cadena.
+// Determinar la longitud de la última palabra:
+
+// Si no se encuentra ningún espacio (lastSpaceIndex === -1), significa que la cadena consta de una sola palabra, por lo que devolvemos la longitud de toda la cadena.
+// De lo contrario, la longitud de la última palabra es la longitud total de la cadena menos el índice del último espacio menos 1 (para excluir el espacio mismo).
