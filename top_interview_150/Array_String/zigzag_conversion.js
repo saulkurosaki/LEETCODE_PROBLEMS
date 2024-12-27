@@ -34,3 +34,46 @@
 // 1 <= s.length <= 1000
 // s consists of English letters (lower-case and upper-case), ',' and '.'.
 // 1 <= numRows <= 1000
+
+function convert(s, numRows) {
+  // Caso base
+  if (numRows === 1 || numRows >= s.length) {
+    return s;
+  }
+
+  // Crear un array para las filas
+  const rows = Array.from({ length: numRows }, () => "");
+  let currentRow = 0;
+  let goingDown = false;
+
+  // Simular el zigzag
+  for (const char of s) {
+    rows[currentRow] += char;
+    // Cambiar dirección en los extremos
+    if (currentRow === 0 || currentRow === numRows - 1) {
+      goingDown = !goingDown;
+    }
+    // Mover a la siguiente fila
+    currentRow += goingDown ? 1 : -1;
+  }
+
+  // Unir todas las filas para generar el resultado final
+  return rows.join("");
+}
+
+// Ejemplos
+console.log(convert("PAYPALISHIRING", 3)); // Output: "PAHNAPLSIIGYIR"
+console.log(convert("PAYPALISHIRING", 4)); // Output: "PINALSIGYAHRPI"
+console.log(convert("A", 1)); // Output: "A"
+
+//* Algoritmo
+
+// 	•	Caso base: Si hay solo una fila o si el número de filas es mayor o igual a la longitud de la cadena, devolvemos la cadena tal cual.
+// 	•	Array de filas: Se usa un array para representar cada fila en el zigzag.
+// 	•	Simulación del zigzag: Se alterna entre “ir hacia abajo” y “hacia arriba” usando una bandera goingDown.
+// 	•	Unión de filas: Al final, concatenamos las filas para generar la cadena de salida.
+
+//* Complejidad
+
+// 	•	Tiempo: O(n), donde n es la longitud de la cadena, ya que cada carácter se procesa una vez.
+// 	•	Espacio: O(n) para almacenar las filas temporales.
