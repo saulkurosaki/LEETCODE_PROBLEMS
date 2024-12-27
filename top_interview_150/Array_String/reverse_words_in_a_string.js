@@ -30,3 +30,14 @@
 // There is at least one word in s.
 
 // Follow-up: If the string data type is mutable in your language, can you solve it in-place with O(1) extra space?
+
+const reverseWords = (s) => {
+  return s.trim().replace(/\s+/g, " ").split(" ").reverse().join(" ");
+};
+
+//* Algoritmo Variante “In-place” con espacio O(1)
+
+// 	1.	Eliminar espacios adicionales: Quita los espacios iniciales, finales y reduce los múltiples espacios entre palabras a un solo espacio.
+// 	2.	Separar las palabras: Divide la cadena en una lista de palabras usando los espacios como delimitadores.
+// 	3.	Invertir el orden: Invierte el orden de las palabras en la lista.
+// 	4.	Concatenar con un solo espacio: Une las palabras invertidas con un único espacio para formar la cadena de salida.
