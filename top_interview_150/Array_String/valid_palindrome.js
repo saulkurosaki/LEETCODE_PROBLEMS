@@ -25,3 +25,14 @@
 
 // 1 <= s.length <= 2 * 105
 // s consists only of printable ASCII characters.
+
+var isPalindrome = function (s) {
+  const cleaned = s.replace(/[^a-zA-Z0-9]/g, "").toLowerCase();
+  const reversed = cleaned.split("").reverse().join("");
+
+  return cleaned === reversed;
+};
+
+//* Complejidad
+// 	•	Tiempo: O(n), donde n es la longitud de s. El preprocesamiento (filtrar y convertir a minúsculas) toma O(n), y la comparación con dos punteros también toma O(n).
+// 	•	Espacio: O(n), debido a la creación de la cadena filtrada cleaned.
