@@ -54,3 +54,122 @@
 // words[i] consists of only English letters and symbols.
 // 1 <= maxWidth <= 100
 // words[i].length <= maxWidth
+
+function fullJustify(words, maxWidth) {
+  const result = [];
+  let line = [];
+  let lineLength = 0;
+
+  for (const word of words) {
+    // Verificar si la palabra cabe en la línea actual
+    if (lineLength + line.length + word.length > maxWidth) {
+      // Justificar la línea actual
+      result.push(justify(line, lineLength, maxWidth));
+      line = [];
+      lineLength = 0;
+    }
+    // Añadir la palabra a la línea
+    line.push(word);
+    lineLength += word.length;
+  }
+
+  // Justificar la última línea (alineación a la izquierda)
+  result.push(
+    line.join(" ") + " ".repeat(maxWidth - lineLength - (line.length - 1))
+  );
+
+  return result;
+}
+
+function justify(line, lineLength, maxWidth) {
+  const spacesNeeded = maxWidth - lineLength;
+  const gaps = line.length - 1;
+
+  // Si hay solo una palabra, alinearla a la izquierda
+  if (gaps === 0) {
+    return line[0] + " ".repeat(spacesNeeded);
+  }
+
+  // Distribuir espacios entre las palabras
+  const spacesPerGap = Math.floor(spacesNeeded / gaps);
+  const extraSpaces = spacesNeeded % gaps;
+
+  let justified = "";
+  for (let i = 0; i < line.length - 1; i++) {
+    justified += line[i] + " ".repeat(spacesPerGap + (i < extraSpaces ? 1 : 0));
+  }
+  justified += line[line.length - 1]; // Añadir la última palabra sin espacios extra
+  return justified;
+}
+
+// Ejemplos
+console.log(
+  fullJustify(
+    ["This", "is", "an", "example", "of", "text", "justification."],
+    16
+  )
+);
+// Output:
+// [
+//    "This    is    an",
+//    "example  of text",
+//    "justification.  "
+// ]
+
+console.log(
+  fullJustify(["What", "must", "be", "acknowledgment", "shall", "be"], 16)
+);
+// Output:
+// [
+//    "What   must   be",
+//    "acknowledgment  ",
+//    "shall be        "
+// ]
+
+console.log(
+  fullJustify(
+    [
+      "Science",
+      "is",
+      "what",
+      "we",
+      "understand",
+      "well",
+      "enough",
+      "to",
+      "explain",
+      "to",
+      "a",
+      "computer.",
+      "Art",
+      "is",
+      "everything",
+      "else",
+      "we",
+      "do",
+    ],
+    20
+  )
+);
+// Output:
+// [
+//    "Science  is  what we",
+//    "understand      well",
+//    "enough to explain to",
+//    "a  computer.  Art is",
+//    "everything  else  we",
+//    "do                  "
+// ]
+
+//* Explicación
+// 	1.	Agrupar palabras:
+// 	•	Para cada palabra en words, verifica si cabe en la línea actual. Si no cabe, justifica la línea actual y empieza una nueva.
+// 	2.	Justificar la línea:
+// 	•	Calcula los espacios adicionales necesarios.
+// 	•	Distribuye los espacios uniformemente entre las palabras, colocando más espacios al principio si sobran.
+// 	3.	Última línea:
+// 	•	Une las palabras con un solo espacio entre ellas y rellena con espacios a la derecha.
+
+//* Complejidad
+// 	•	Tiempo: O(n), donde n es la longitud total de los caracteres en words. Cada palabra se procesa una vez.
+// 	•	Espacio: O(n) para almacenar las líneas justificadas.
