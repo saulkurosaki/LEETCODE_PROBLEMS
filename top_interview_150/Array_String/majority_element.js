@@ -27,7 +27,7 @@ var majorityElement = function (nums) {
   let candidate = null;
   let count = 0;
 
-  for (num of nums) {
+  for (const num of nums) {
     if (count === 0) {
       candidate = num;
     }
