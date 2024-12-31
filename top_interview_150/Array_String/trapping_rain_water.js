@@ -54,13 +54,13 @@ function trap(height) {
 // 	•	Una variable water para acumular el agua atrapada.
 // 	2.	Movimiento de los punteros:
 // 	•	Si la altura en left es menor que la de right:
-// 	•	Si la altura en left es mayor o igual a leftMax, actualiza leftMax.
-// 	•	Si no, suma la diferencia entre leftMax y height[left] al agua acumulada.
-// 	•	Incrementa left.
+// 	  •	Si la altura en left es mayor o igual a leftMax, actualiza leftMax.
+// 	  •	Si no, suma la diferencia entre leftMax y height[left] al agua acumulada.
+// 	  •	Incrementa left.
 // 	•	Si la altura en right es menor o igual a la de left:
-// 	•	Si la altura en right es mayor o igual a rightMax, actualiza rightMax.
-// 	•	Si no, suma la diferencia entre rightMax y height[right] al agua acumulada.
-// 	•	Decrementa right.
+// 	  •	Si la altura en right es mayor o igual a rightMax, actualiza rightMax.
+// 	  •	Si no, suma la diferencia entre rightMax y height[right] al agua acumulada.
+// 	  •	Decrementa right.
 // 	3.	Parada:
 // 	•	El proceso continúa mientras left sea menor o igual a right.
 
