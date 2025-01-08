@@ -31,3 +31,38 @@
 // numbers is sorted in non-decreasing order.
 // -1000 <= target <= 1000
 // The tests are generated such that there is exactly one solution.
+
+function twoSum(numbers, target) {
+  let left = 0; // Puntero izquierdo
+  let right = numbers.length - 1; // Puntero derecho
+
+  while (left < right) {
+    const sum = numbers[left] + numbers[right];
+
+    if (sum === target) {
+      // Retornar índices ajustados a 1-indexado
+      return [left + 1, right + 1];
+    } else if (sum < target) {
+      left++; // Mover el puntero izquierdo hacia la derecha
+    } else {
+      right--; // Mover el puntero derecho hacia la izquierda
+    }
+  }
+
+  // No debería llegar aquí porque se garantiza que hay exactamente una solución
+  return [];
+}
+
+//* Estrategia
+
+// •	Un puntero comienza en el inicio del array.
+// •	Otro puntero comienza al final del array.
+
+// 1.	Calcula la suma de los valores en las posiciones de los dos punteros.
+// 2.	Si la suma es igual al target, hemos encontrado la solución.
+// 3.	Si la suma es menor al target, mueve el puntero izquierdo hacia la derecha.
+// 4.	Si la suma es mayor al target, mueve el puntero derecho hacia la izquierda.
+
+//* Complejidad
+// 	•	Tiempo: O(n), donde n es la longitud del array numbers. Cada elemento se procesa como máximo una vez debido al movimiento de los punteros.
+// 	•	Espacio: O(1), ya que no usamos estructuras de datos adicionales.
