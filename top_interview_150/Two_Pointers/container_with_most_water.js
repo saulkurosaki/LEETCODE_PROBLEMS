@@ -23,3 +23,45 @@
 // n == height.length
 // 2 <= n <= 105
 // 0 <= height[i] <= 104
+
+function maxArea(height) {
+  let left = 0; // Puntero izquierdo
+  let right = height.length - 1; // Puntero derecho
+  let maxArea = 0;
+
+  while (left < right) {
+    // Calcular el área con las líneas actuales
+    const currentArea = Math.min(height[left], height[right]) * (right - left);
+    maxArea = Math.max(maxArea, currentArea);
+
+    // Mover el puntero con la altura menor
+    if (height[left] < height[right]) {
+      left++;
+    } else {
+      right--;
+    }
+  }
+
+  return maxArea;
+}
+
+//* Algoritmo:
+// 	1.	El área de agua entre dos líneas se calcula como:
+
+//     area = min(alturaIzquierda, alturaDerecha) * (índiceDerecho - índiceIzquierdo)
+
+// Donde:
+// 	•	 alturaIzquierda  y  alturaDerecha  son las alturas de las líneas seleccionadas.
+// 	•	 índiceDerecho - índiceIzquierdo  es la distancia entre las líneas.
+
+// 	2.	Para maximizar el área, necesitamos encontrar una combinación óptima de distancia y altura.
+
+// 	3.	Usaremos dos punteros:
+// 	•	Uno al principio ( left ).
+// 	•	Otro al final ( right ) del array.
+
+// 	4.	Siempre movemos el puntero con la altura menor hacia adentro, ya que esa línea limita el área máxima que se puede formar con las demás.
+
+//* Complejidad:
+// 	•	Tiempo: O(n), donde n es la longitud del array. Los punteros se mueven como máximo n veces en total.
+// 	•	Espacio: O(1), ya que no usamos estructuras de datos adicionales.
