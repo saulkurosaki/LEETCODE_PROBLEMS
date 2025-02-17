@@ -26,3 +26,34 @@
 // Constraints:
 
 // 1 <= n <= 231 - 1
+
+function isHappy(n) {
+  let numMap = new Map(); // HashMap para registrar números vistos
+
+  function getNext(num) {
+    let sum = 0;
+    while (num > 0) {
+      let digit = num % 10;
+      sum += digit * digit;
+      num = Math.floor(num / 10);
+    }
+    return sum;
+  }
+
+  while (n !== 1 && !numMap.has(n)) {
+    numMap.set(n, true); // Guardamos n en el HashMap
+    n = getNext(n);
+  }
+
+  return n === 1;
+}
+
+//* Explicación
+// 	1.	Usamos un Map en lugar de un Set para almacenar números ya visitados.
+// 	2.	Creamos getNext(num), que obtiene la suma de los cuadrados de los dígitos.
+// 	3.	Mientras n no sea 1 y no haya sido visto antes, seguimos iterando.
+// 	4.	Si n se repite, hay un ciclo y retornamos false.
+// 	5.	Si n llega a 1, el número es feliz (true).
+
+//* Complejidad:
+// O(\log n) porque cada número tiene aproximadamente \log n dígitos.
